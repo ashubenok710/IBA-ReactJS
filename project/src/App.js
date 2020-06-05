@@ -17,7 +17,7 @@ function App() {
           <Header headerText="Header" />
         </Row>
         <Row>
-          <Card headerText="Caption" text="Text..." />
+          <Card text="Text..."/>
         </Row>
       </Container>
 
