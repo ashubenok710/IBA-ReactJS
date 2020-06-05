@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Card.css';
 
-const Card = ({ text, headerText }) =>
+const Card = ({ headerText, text }) =>
     <div className="card">
-        <div className="card-header">Caption</div>
+        <div className="card-header">{headerText}</div>
         <div>{text}</div>
     </div>
 
