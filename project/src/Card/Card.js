@@ -2,10 +2,10 @@ import React from 'react';
 
 import './Card.css';
 
-const Card = ({ headerText, text }) =>
+const Card = (props) =>
     <div className="card">
-        <div className="card-header">{headerText}</div>
-        <div>{text}</div>
+        <div className="card-header">{props.headerText}</div>
+        <div>{props.children}</div>
     </div>
 
 export default Card;
