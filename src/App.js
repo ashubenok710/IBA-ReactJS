@@ -1,12 +1,10 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container'
-import { Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
-
+import { Row, Container } from 'react-bootstrap';
 
 import './App.css';
-import Header from './Header/Header'
-import Card from './Card/Card'
+
+import Header from './Header'
+import Card from './Card'
 
 function App() {
   return (
@@ -16,8 +14,8 @@ function App() {
         <Row>
           <Header headerText="Header" />
         </Row>
-        <Row>
-          <Card text="Text..."/>
+        <Row className="cardWrapper">
+          <Card headerText="Caption" >Text...</Card>
         </Row>
       </Container>
 
