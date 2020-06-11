@@ -1,5 +1,5 @@
 .card-header {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(116, 106, 106);
     margin-bottom: 5px;
     font-weight: bold;
     padding-bottom: 5px;
@@ -7,9 +7,18 @@
 
 .card {
     display: inline-block;    
-    border: 3px solid #eee;
-    border-color: green;
+    border: 3px solid green;    
     color: green;
     width: 150px;
     padding: 10px;
+}
+
+.card-checked{       
+    border: 3px solid blue;    
+    color: blue;
+}
+
+.absolute-checkbox{
+    position: absolute;
+    margin-left: 133px;
 }
