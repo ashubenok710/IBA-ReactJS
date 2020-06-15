@@ -1,10 +1,3 @@
-.card-header {
-    border-bottom: 1px solid rgb(116, 106, 106);
-    margin-bottom: 5px;
-    font-weight: bold;
-    padding-bottom: 5px;
-}
-
 .card {
     display: inline-block;    
     border: 3px solid green;    
@@ -13,9 +6,20 @@
     padding: 10px;
 }
 
+.card-header {
+    border-bottom: 1px solid rgb(116, 106, 106);
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-bottom: 5px;    
+}
+
 .card-checked{       
     border: 3px solid blue;    
     color: blue;
+}
+
+.narrow-input{
+    width: 110px;
 }
 
 .absolute{

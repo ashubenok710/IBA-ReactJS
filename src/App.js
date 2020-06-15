@@ -7,25 +7,16 @@ import Card from "./Card";
 
 class App extends React.Component {
   state = {
-    firstCard: {
-      header: "Caption",
-      text: "Text...",
-    },
+    header: "Caption",
+    text: "Text...",
   };
 
-  headerChange = (e) => {
-    this.setState({
-      firstCard: {
-        header: e.target.value,
-        text: this.state.firstCard.text,
-      },
-    });
+  setCard = (header, text) => {
+    this.setState({ header, text });
   };
 
   render() {
-    const {
-      firstCard: { header, text },
-    } = this.state;
+    const { header, text } = this.state;
 
     return (
       <div className="App">
@@ -34,7 +25,7 @@ class App extends React.Component {
             <Header headerText="Header"></Header>
           </Row>
           <Row className="cardWrapper">
-            <Card headerText={header} onHeaderChange={this.headerChange}>
+            <Card headerText={header} onSetCard={this.setCard}>
               {text}
             </Card>
           </Row>

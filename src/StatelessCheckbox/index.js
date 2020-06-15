@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 
-const StatelessCheckbox = ({ label, checked, onChange }) =>
+const StatelessCheckbox = ({ label, checked, onChange }) => (
   <div>
-    <input onChange={onChange} type="checkbox" checked={checked} />
+    <input type="checkbox" checked={checked} onChange={onChange} />
     {label && <label>{label}</label>}
   </div>
+);
 
 export default StatelessCheckbox;
