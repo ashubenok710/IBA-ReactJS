@@ -6,6 +6,11 @@ import Header from "./Header";
 import Card from "./Card";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setCard = this.setCard.bind(this);
+  }
+
   state = {
     header: "Caption",
     text: "Text...",

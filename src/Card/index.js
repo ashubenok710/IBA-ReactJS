@@ -17,16 +17,9 @@ class Card extends React.Component {
   state = {
     checked: false,
     isEdit: false,
-    initHeader: "",
-    initText: "",
+    initHeader: this.props.headerText,
+    initText: this.props.children,
   };
-
-  componentDidMount() {
-    this.setState({
-      initHeader: this.props.headerText,
-      initText: this.props.children,
-    });
-  }
 
   changeMethod() {
     this.setState({
@@ -41,11 +34,10 @@ class Card extends React.Component {
     });
   }
 
-  headerChange = (e) => {
+  headerChange = (e) =>
     this.setState({
       initHeader: e.target.value,
     });
-  };
 
   textChange = (e) =>
     this.setState({
@@ -56,12 +48,12 @@ class Card extends React.Component {
     const { checked, isEdit, initHeader, initText } = this.state;
     const { className, headerText, children, onSetCard } = this.props;
 
-    var cardStyle = classNames("card", className, {
-      "card-checked": this.state.checked,
-    });
-
     return (
-      <div className={cardStyle}>
+      <div
+        className={classNames("card", className, {
+          "card-checked": this.state.checked,
+        })}
+      >
         {isEdit ? (
           <>
             <span className="absolute pen" onClick={this.toogleEditMethod}>
@@ -74,14 +66,14 @@ class Card extends React.Component {
             </span>
 
             <div className="card-header">
-              <input
+              <textarea
                 className="narrow-input"
                 value={initHeader}
                 onChange={this.headerChange}
               />
             </div>
             <div>
-              <input
+              <textarea
                 className="narrow-input"
                 value={initText}
                 onChange={this.textChange}
@@ -100,7 +92,7 @@ class Card extends React.Component {
               />
             </span>
             <div className="card-header">{headerText}</div>
-            <div>{children}</div>
+            <div className="text">{children}</div>
           </>
         )}
       </div>
