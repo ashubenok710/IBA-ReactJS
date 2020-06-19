@@ -1,16 +1,24 @@
 import React, { Component } from "react";
-import StatelessCheckbox from "../StatelessCheckbox/index.js";
 import "./Card.css";
 import classNames from "classnames/bind";
+import StatelessCheckbox from "../StatelessCheckbox/index.js";
+
+import { BsPen } from "react-icons/bs";
+import { FaSave } from "react-icons/fa";
+import { GiCancel } from "react-icons/gi";
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
     this.changeMethod = this.changeMethod.bind(this);
+    this.toogleEditMethod = this.toogleEditMethod.bind(this);
   }
 
   state = {
     checked: false,
+    isEdit: false,
+    initHeader: this.props.headerText,
+    initText: this.props.children,
   };
 
   changeMethod() {
@@ -19,20 +27,74 @@ class Card extends React.Component {
     });
   }
 
-  render() {
-    const { checked } = this.state;
-    var cardClass = classNames("card", this.props.className, {
-      "card-checked": this.state.checked,
+  toogleEditMethod() {
+    this.setState({
+      isEdit: !this.state.isEdit,
+      checked: false,
+    });
+  }
+
+  headerChange = (e) =>
+    this.setState({
+      initHeader: e.target.value,
     });
 
+  textChange = (e) =>
+    this.setState({
+      initText: e.target.value,
+    });
+
+  render() {
+    const { checked, isEdit, initHeader, initText } = this.state;
+    const { className, headerText, children, onSetCard } = this.props;
+
     return (
-      <div className={cardClass}>
-        {/* alternate approach  </div><div className={`card ${checked ? "card-styled" : ""}`}>  */}
-        <span className="absolute-checkbox">
-          <StatelessCheckbox checked={checked} onChange={this.changeMethod} />
-        </span>
-        <div className="card-header">{this.props.headerText}</div>
-        <div>{this.props.children}</div>
+      <div
+        className={classNames("card", className, {
+          "card-checked": this.state.checked,
+        })}
+      >
+        {isEdit ? (
+          <>
+            <span className="absolute pen" onClick={this.toogleEditMethod}>
+              <FaSave onClick={() => onSetCard(initHeader, initText)} />
+              <GiCancel
+                onClick={() =>
+                  this.setState({ initHeader: headerText, initText: children })
+                }
+              />
+            </span>
+
+            <div className="card-header">
+              <textarea
+                className="narrow-input"
+                value={initHeader}
+                onChange={this.headerChange}
+              />
+            </div>
+            <div>
+              <textarea
+                className="narrow-input"
+                value={initText}
+                onChange={this.textChange}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <span className="absolute pen" onClick={this.toogleEditMethod}>
+              <BsPen />
+            </span>
+            <span className="absolute checkbox">
+              <StatelessCheckbox
+                checked={checked}
+                onChange={this.changeMethod}
+              />
+            </span>
+            <div className="card-header">{headerText}</div>
+            <div className="text">{children}</div>
+          </>
+        )}
       </div>
     );
   }

@@ -5,19 +5,39 @@ import "./App.css";
 import Header from "./Header";
 import Card from "./Card";
 
-function App() {
-  return (
-    <div className="App">
-      <Container className="main-container">
-        <Row>
-          <Header headerText="Header"> </Header>
-        </Row>
-        <Row className="cardWrapper">
-          <Card headerText="Caption">Text...</Card>
-        </Row>
-      </Container>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setCard = this.setCard.bind(this);
+  }
+
+  state = {
+    header: "Caption",
+    text: "Text...",
+  };
+
+  setCard = (header, text) => {
+    this.setState({ header, text });
+  };
+
+  render() {
+    const { header, text } = this.state;
+
+    return (
+      <div className="App">
+        <Container className="main-container">
+          <Row>
+            <Header headerText="Header"></Header>
+          </Row>
+          <Row className="cardWrapper">
+            <Card headerText={header} onSetCard={this.setCard}>
+              {text}
+            </Card>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;
