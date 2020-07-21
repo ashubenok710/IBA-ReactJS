@@ -17,11 +17,13 @@ class Card extends React.Component {
   state = {
     checked: false,
     isEdit: false,
+    isReadOnly: false,
     initHeader: this.props.headerText,
     initText: this.props.children,
   };
 
   changeMethod() {
+    console.log("Card: changeMethod");
     this.setState({
       checked: !this.state.checked,
     });
@@ -46,7 +48,14 @@ class Card extends React.Component {
 
   render() {
     const { checked, isEdit, initHeader, initText } = this.state;
-    const { className, headerText, children, onSetCard } = this.props;
+    const {
+      className,
+      readOnly,
+      number,
+      headerText,
+      children,
+      onSetCard,
+    } = this.props;
 
     return (
       <div
@@ -57,12 +66,21 @@ class Card extends React.Component {
         {isEdit ? (
           <>
             <span className="absolute pen" onClick={this.toogleEditMethod}>
-              <FaSave onClick={() => onSetCard(initHeader, initText)} />
-              <GiCancel
-                onClick={() =>
-                  this.setState({ initHeader: headerText, initText: children })
-                }
-              />
+              {!readOnly && (
+                <>
+                  <FaSave
+                    onClick={() => onSetCard(number, initHeader, initText)}
+                  />
+                  <GiCancel
+                    onClick={() =>
+                      this.setState({
+                        initHeader: headerText,
+                        initText: children,
+                      })
+                    }
+                  />
+                </>
+              )}
             </span>
 
             <div className="card-header">
@@ -82,9 +100,12 @@ class Card extends React.Component {
           </>
         ) : (
           <>
-            <span className="absolute pen" onClick={this.toogleEditMethod}>
-              <BsPen />
-            </span>
+            {!readOnly && (
+              <span className="absolute pen" onClick={this.toogleEditMethod}>
+                <BsPen />
+              </span>
+            )}
+
             <span className="absolute checkbox">
               <StatelessCheckbox
                 checked={checked}
