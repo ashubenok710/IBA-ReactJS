@@ -17,13 +17,23 @@ class Card extends React.Component {
   state = {
     checked: false,
     isEdit: false,
-    isReadOnly: false,
     initHeader: this.props.headerText,
     initText: this.props.children,
   };
 
+  componentDidUpdate(prevProps) {
+    const { readOnly, headerText, children } = this.props;
+    const { isEdit } = this.state;
+    if (!prevProps.readOnly && readOnly && isEdit) {
+      this.setState({
+        initHeader: headerText,
+        initText: children,
+        isEdit: false,
+      });
+    }
+  }
+
   changeMethod() {
-    console.log("Card: changeMethod");
     this.setState({
       checked: !this.state.checked,
     });

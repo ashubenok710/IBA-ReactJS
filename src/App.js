@@ -62,9 +62,8 @@ class App extends React.Component {
           </span>
 
           {cards.map((d, index) => (
-            <Row className="cardWrapper">
+            <Row className="cardWrapper" key={d.id}>
               <Card
-                key={d.id}
                 number={index}
                 headerText={d.headerText}
                 readOnly={readOnly}
