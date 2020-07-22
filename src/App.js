@@ -53,13 +53,13 @@ class App extends React.Component {
             <Header headerText="Header"></Header>
           </Row>
 
-          <span className="">
+          <Row className="cardWrapper">
             <StatelessCheckbox
               label="Read Only"
               checked={readOnly}
               onChange={this.changeMethod}
             />
-          </span>
+          </Row>
 
           {cards.map((d, index) => (
             <Row className="cardWrapper" key={d.id}>
