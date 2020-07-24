@@ -4,7 +4,18 @@
   padding-bottom: 25px;
 }
 
-.cardWrapper{
+.cardWrapper {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.cardWrapper .card {
+  margin: 1rem;
+}
+
+.checkBoxWrapper{
   padding-left: 25px;
-  padding-top: 25px;
+  padding-top: 15px;
 }

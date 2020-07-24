@@ -52,18 +52,17 @@ class App extends React.Component {
           <Row>
             <Header headerText="Header"></Header>
           </Row>
-
-          <Row className="cardWrapper">
+          <Row className="checkBoxWrapper">
             <StatelessCheckbox
               label="Read Only"
               checked={readOnly}
               onChange={this.changeMethod}
             />
           </Row>
-
-          {cards.map((d, index) => (
-            <Row className="cardWrapper" key={d.id}>
+          <Row className="cardWrapper">
+            {cards.map((d, index) => (
               <Card
+                key={d.id}
                 number={index}
                 headerText={d.headerText}
                 readOnly={readOnly}
@@ -71,8 +70,8 @@ class App extends React.Component {
               >
                 {d.text}
               </Card>
-            </Row>
-          ))}
+            ))}
+          </Row>
         </Container>
       </div>
     );
