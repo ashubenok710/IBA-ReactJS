@@ -2,15 +2,6 @@ import React from "react";
 
 import styled from "styled-components";
 
-const StyledCheckBox = ({ label, checked, onChange }) => (
-  <Styled onClick={() => onChange(!checked)}>
-    <input type="checkbox" checked={checked} />
-    {label && <label>{label}</label>}
-  </Styled>
-);
-
-export default StyledCheckBox;
-
 const Styled = styled.div`
   display: inline-block;
   > input {
@@ -26,7 +17,7 @@ const Styled = styled.div`
       left: 0;
       top: 1px;
       width: 17px;
-      height: 17px; /* dim. de la case */
+      height: 17px;
       border: 1px solid #aaa;
       background: #f8f8f8;
       border-radius: 3px;
@@ -76,3 +67,12 @@ const Styled = styled.div`
     }
   }
 `;
+
+const StyledCheckBox = ({ label, checked, onChange }) => (
+  <Styled onClick={() => onChange(!checked)}>
+    <input type="checkbox" checked={checked} />
+    {label && <label>{label}</label>}
+  </Styled>
+);
+
+export default StyledCheckBox;
