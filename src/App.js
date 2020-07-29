@@ -5,6 +5,7 @@ import StatelessCheckbox from "./StatelessCheckbox";
 
 import Header from "./Header";
 import Card from "./Card";
+import StyledCheckBox from "./StyledCheckbox";
 
 class App extends React.Component {
   constructor(props) {
@@ -52,13 +53,15 @@ class App extends React.Component {
           <Row>
             <Header headerText="Header"></Header>
           </Row>
+
           <Row className="checkBoxWrapper">
-            <StatelessCheckbox
+            <StyledCheckBox
               label="Read Only"
-              checked={readOnly}
+              checked={this.state.readOnly}
               onChange={this.changeMethod}
             />
           </Row>
+
           <Row className="cardWrapper">
             {cards.map((d, index) => (
               <Card
