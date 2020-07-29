@@ -70,7 +70,7 @@ const Styled = styled.div`
 
 const StyledCheckBox = ({ label, checked, onChange }) => (
   <Styled onClick={() => onChange(!checked)}>
-    <input type="checkbox" checked={checked} />
+    <input type="checkbox" checked={checked} onChange={() => {}} />
     {label && <label>{label}</label>}
   </Styled>
 );
