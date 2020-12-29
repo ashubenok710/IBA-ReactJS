@@ -6,6 +6,8 @@ import StatelessCheckbox from "./StatelessCheckbox";
 import Header from "./Header";
 import Card from "./Card";
 
+import CardList from "./CardList";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,14 +21,13 @@ class App extends React.Component {
     checked: false,
     readOnly: false,
     cards: [
-      { id: 1, headerText: "Caption1", text: "Text1" },
-      { id: 2, headerText: "Caption2", text: "Text2" },
-      { id: 3, headerText: "Caption3", text: "Text3" },
-      { id: 4, headerText: "Caption4", text: "Text4" },
-      { id: 5, headerText: "Caption5", text: "Text5" },
-      { id: 6, headerText: "Caption6", text: "Text6" },
-      { id: 7, headerText: "Caption7", text: "Text7" },
-      { id: 8, headerText: "Caption8", text: "Text8" },
+      { id: 1, headerText: "Caption_1", text: "Text1" },
+      { id: 2, headerText: "Caption_2", text: "Text2" },
+      { id: 3, headerText: "Caption_3", text: "Text3" },
+      { id: 4, headerText: "Caption_4", text: "Text4" },
+      { id: 5, headerText: "Caption_5", text: "Text5" },
+      { id: 6, headerText: "Caption_6", text: "Text6" },
+      { id: 7, headerText: "Caption_7", text: "Text7" },
     ],
   };
 
@@ -59,18 +60,13 @@ class App extends React.Component {
               onChange={this.changeMethod}
             />
           </Row>
+
           <Row className="cardWrapper">
-            {cards.map((d, index) => (
-              <Card
-                key={d.id}
-                number={index}
-                headerText={d.headerText}
-                readOnly={readOnly}
-                onSetCard={this.setCard}
-              >
-                {d.text}
-              </Card>
-            ))}
+            <CardList
+              readOnly={readOnly}
+              onCardChange={this.setCard}
+              cards={cards}
+            />
           </Row>
         </Container>
       </div>

@@ -1,0 +1,85 @@
+import React, { Component } from "react";
+import "./Card.css";
+import classNames from "classnames/bind";
+import StatelessCheckbox from "../StatelessCheckbox/index.js";
+
+import CardHeader from "./CardHeader";
+import CardBody from "./CardHeader";
+
+import { BsPen } from "react-icons/bs";
+import { FaSave } from "react-icons/fa";
+import { GiCancel } from "react-icons/gi";
+
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    this.changeMethod = this.changeMethod.bind(this);
+    this.toogleEditMethod = this.toogleEditMethod.bind(this);
+  }
+
+  state = {
+    checked: false,
+    //isEdit: false,
+    initHeader: this.props.headerText,
+    initText: this.props.children,
+  };
+
+  componentDidUpdate(prevProps) {
+    const { readOnly, headerText, children } = this.props;
+    const { isEdit } = this.state;
+    if (!prevProps.readOnly && readOnly && isEdit) {
+      this.setState({
+        initHeader: headerText,
+        initText: children,
+        isEdit: false,
+      });
+    }
+  }
+
+  changeMethod() {
+    this.setState({
+      checked: !this.state.checked,
+    });
+  }
+
+  toogleEditMethod() {
+    this.setState({
+      isEdit: !this.state.isEdit,
+      checked: false,
+    });
+  }
+
+  headerChange = (e) =>
+    this.setState({
+      initHeader: e.target.value,
+    });
+
+  textChange = (e) =>
+    this.setState({
+      initText: e.target.value,
+    });
+
+  render() {
+    const { checked, isEdit, initHeader, initText } = this.state;
+    const {
+      className,
+      readOnly,
+      number,
+      headerText,
+      children,
+      onSetCard,
+    } = this.props;
+
+    return (
+      <div
+        className={classNames("card", className, {
+          "card-checked": this.state.checked,
+        })}
+      >
+        <CardHeader isEdit={isEdit} initHeader={initHeader} />
+      </div>
+    );
+  }
+}
+
+export default Card;
