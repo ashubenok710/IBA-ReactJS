@@ -11,36 +11,34 @@ import CardList from "./CardList";
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.setReadOnly = this.setReadOnly.bind(this);
     this.setCard = this.setCard.bind(this);
-    this.changeMethod = this.changeMethod.bind(this);
   }
 
   state = {
-    header: "Caption",
-    text: "Text...",
-    checked: false,
     readOnly: false,
     cards: [
-      { id: 1, headerText: "Caption_1", text: "Text1" },
-      { id: 2, headerText: "Caption_2", text: "Text2" },
-      { id: 3, headerText: "Caption_3", text: "Text3" },
-      { id: 4, headerText: "Caption_4", text: "Text4" },
-      { id: 5, headerText: "Caption_5", text: "Text5" },
-      { id: 6, headerText: "Caption_6", text: "Text6" },
-      { id: 7, headerText: "Caption_7", text: "Text7" },
+      { id: 1, headerText: "Caption_1", text: "Text1", checked: false },
+      { id: 2, headerText: "Caption_2", text: "Text2", checked: false },
+      { id: 3, headerText: "Caption_3", text: "Text3", checked: false },
+      { id: 4, headerText: "Caption_4", text: "Text4", checked: false },
+      { id: 5, headerText: "Caption_5", text: "Text5", checked: false },
+      { id: 6, headerText: "Caption_6", text: "Text6", checked: false },
+      { id: 7, headerText: "Caption_7", text: "Text7", checked: false },
     ],
   };
 
-  changeMethod() {
+  setReadOnly() {
     this.setState({
       readOnly: !this.state.readOnly,
     });
   }
 
-  setCard = (index, header, text) => {
+  setCard = (index, header, text, checked) => {
     let tmp = this.state.cards;
     tmp[index].headerText = header;
     tmp[index].text = text;
+    tmp[index].checked = checked;
     this.setState({ cards: tmp });
   };
 
@@ -57,7 +55,7 @@ class App extends React.Component {
             <StatelessCheckbox
               label="Read Only"
               checked={readOnly}
-              onChange={this.changeMethod}
+              onChange={this.setReadOnly}
             />
           </Row>
 

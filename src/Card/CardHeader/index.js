@@ -8,24 +8,29 @@ import { FaSave } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
 
 class CardHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    //this.changeMethod = this.changeMethod.bind(this);
+    //this.toogleEditMethod = this.toogleEditMethod.bind(this);
+  }
+
   state = {
-    checked: false,
-    isEdit: false,
     initHeader: this.props.headerText,
   };
 
   render() {
-    const { checked, initHeader, initText } = this.state;
-
     const {
       isEdit,
-      className,
+      checked,
       readOnly,
-      number,
       headerText,
-      children,
-      onSetCard,
+      onCheckedChange,
     } = this.props;
+
+    const { initHeader } = this.state;
+
+    console.log("CardHeader props:", this.props);
+    console.log("CardHeader state:", this.state);
 
     return (
       <div>
@@ -34,14 +39,11 @@ class CardHeader extends React.Component {
             <span className="absolute pen" onClick={this.toogleEditMethod}>
               {!readOnly && (
                 <>
-                  <FaSave
-                    onClick={() => onSetCard(number, initHeader, initText)}
-                  />
+                  {/*<FaSave onClick={() => onSetHeader(number, initHeader)} /> */}
                   <GiCancel
                     onClick={() =>
                       this.setState({
                         initHeader: headerText,
-                        initText: children,
                       })
                     }
                   />
@@ -66,10 +68,7 @@ class CardHeader extends React.Component {
             )}
 
             <span className="absolute checkbox">
-              <StatelessCheckbox
-                checked={checked}
-                onChange={this.changeMethod}
-              />
+              <StatelessCheckbox checked={checked} onChange={onCheckedChange} />
             </span>
             <div className="card-header">{headerText}</div>
           </>

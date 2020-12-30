@@ -1,5 +1,12 @@
 import React, { Component } from "react";
 
+import "./CardBody.css";
+import StatelessCheckbox from "../../StatelessCheckbox";
+
+import { BsPen } from "react-icons/bs";
+import { FaSave } from "react-icons/fa";
+import { GiCancel } from "react-icons/gi";
+
 class CardBody extends React.Component {
   state = {
     checked: false,
@@ -8,7 +15,6 @@ class CardBody extends React.Component {
   };
 
   render() {
-    const { checked, isEdit, initHeader, initText } = this.state;
     const {
       className,
       readOnly,
@@ -18,32 +24,15 @@ class CardBody extends React.Component {
       onSetCard,
     } = this.props;
 
+    const { checked, isEdit, initHeader, initText } = this.state;
+
+    console.log("CardBody props:", this.props);
+    console.log("CardBody state:", this.state);
+
     return (
-      <div
-        className={classNames("card", className, {
-          "card-checked": this.state.checked,
-        })}
-      >
+      <div>
         {isEdit ? (
           <>
-            <span className="absolute pen" onClick={this.toogleEditMethod}>
-              {!readOnly && (
-                <>
-                  <FaSave
-                    onClick={() => onSetCard(number, initHeader, initText)}
-                  />
-                  <GiCancel
-                    onClick={() =>
-                      this.setState({
-                        initHeader: headerText,
-                        initText: children,
-                      })
-                    }
-                  />
-                </>
-              )}
-            </span>
-
             <div>
               <textarea
                 className="narrow-input"
@@ -54,19 +43,6 @@ class CardBody extends React.Component {
           </>
         ) : (
           <>
-            {!readOnly && (
-              <span className="absolute pen" onClick={this.toogleEditMethod}>
-                <BsPen />
-              </span>
-            )}
-
-            <span className="absolute checkbox">
-              <StatelessCheckbox
-                checked={checked}
-                onChange={this.changeMethod}
-              />
-            </span>
-
             <div className="text">{children}</div>
           </>
         )}

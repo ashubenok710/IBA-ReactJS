@@ -4,22 +4,17 @@ import classNames from "classnames/bind";
 import StatelessCheckbox from "../StatelessCheckbox/index.js";
 
 import CardHeader from "./CardHeader";
-import CardBody from "./CardHeader";
-
-import { BsPen } from "react-icons/bs";
-import { FaSave } from "react-icons/fa";
-import { GiCancel } from "react-icons/gi";
+import CardBody from "./CardBody";
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
-    this.changeMethod = this.changeMethod.bind(this);
-    this.toogleEditMethod = this.toogleEditMethod.bind(this);
+    //this.changeMethod = this.changeMethod.bind(this);
+    //this.toogleEditMethod = this.toogleEditMethod.bind(this);
+    this.headerChange = this.headerChange.bind(this);
   }
 
   state = {
-    checked: false,
-    //isEdit: false,
     initHeader: this.props.headerText,
     initText: this.props.children,
   };
@@ -31,22 +26,8 @@ class Card extends React.Component {
       this.setState({
         initHeader: headerText,
         initText: children,
-        isEdit: false,
       });
     }
-  }
-
-  changeMethod() {
-    this.setState({
-      checked: !this.state.checked,
-    });
-  }
-
-  toogleEditMethod() {
-    this.setState({
-      isEdit: !this.state.isEdit,
-      checked: false,
-    });
   }
 
   headerChange = (e) =>
@@ -60,23 +41,36 @@ class Card extends React.Component {
     });
 
   render() {
-    const { checked, isEdit, initHeader, initText } = this.state;
     const {
+      number,
       className,
       readOnly,
-      number,
+      checked,
       headerText,
-      children,
       onSetCard,
+      children,
     } = this.props;
+
+    const { initText } = this.state;
+
+    console.log("Card props:", this.props);
+    console.log("Card state:", this.state);
 
     return (
       <div
         className={classNames("card", className, {
-          "card-checked": this.state.checked,
+          "card-checked": checked,
         })}
       >
-        <CardHeader isEdit={isEdit} initHeader={initHeader} />
+        <CardHeader
+          checked={checked}
+          readOnly={readOnly}
+          headerText={headerText}
+          onCheckedChange={() =>
+            onSetCard(number, headerText, children, !checked)
+          }
+        />
+        <CardBody children={initText} />
       </div>
     );
   }

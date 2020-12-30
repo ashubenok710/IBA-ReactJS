@@ -1,0 +1,8 @@
+.card-header {
+    border-bottom: 1px solid rgb(116, 106, 106);
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-bottom: 5px;  
+    max-width: 120px;  
+    word-wrap: break-word;
+}

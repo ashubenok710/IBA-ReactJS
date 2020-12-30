@@ -10,17 +10,20 @@ class CardList extends React.Component {
   render() {
     const { cards, readOnly, onCardChange } = this.props;
 
+    console.log("CardList props:", this.props);
+
     return (
       <div>
-        {cards.map((d, index) => (
+        {cards.map((card, index) => (
           <Card
-            key={d.id}
+            key={card.id}
             number={index}
-            headerText={d.headerText}
+            checked={card.checked}
+            headerText={card.headerText}
             readOnly={readOnly}
             onSetCard={onCardChange}
           >
-            {d.text}
+            {card.text}
           </Card>
         ))}
       </div>
