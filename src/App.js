@@ -18,13 +18,14 @@ class App extends React.Component {
   state = {
     readOnly: false,
     cards: [
-      { id: 1, headerText: "Caption_1", text: "Text1", checked: false },
-      { id: 2, headerText: "Caption_2", text: "Text2", checked: false },
+      { id: 1, headerText: "Caption_1", text: "Text1!", checked: false },
+      /*{ id: 2, headerText: "Caption_2", text: "Text2", checked: false },
       { id: 3, headerText: "Caption_3", text: "Text3", checked: false },
       { id: 4, headerText: "Caption_4", text: "Text4", checked: false },
       { id: 5, headerText: "Caption_5", text: "Text5", checked: false },
       { id: 6, headerText: "Caption_6", text: "Text6", checked: false },
       { id: 7, headerText: "Caption_7", text: "Text7", checked: false },
+      */
     ],
   };
 
@@ -62,8 +63,8 @@ class App extends React.Component {
           <Row className="cardWrapper">
             <CardList
               readOnly={readOnly}
-              onCardChange={this.setCard}
               cards={cards}
+              onCardChange={this.setCard}
             />
           </Row>
         </Container>

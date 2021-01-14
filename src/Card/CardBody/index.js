@@ -11,24 +11,16 @@ class CardBody extends React.Component {
   state = {
     checked: false,
     isEdit: false,
-    initHeader: this.props.headerText,
   };
 
   render() {
-    const {
-      className,
-      readOnly,
-      number,
-      headerText,
-      children,
-      onSetCard,
-    } = this.props;
+    const { readOnly, number, headerText, text, onSetCard } = this.props;
 
-    const { checked, isEdit, initHeader, initText } = this.state;
+    const { checked, isEdit, initText } = this.state;
 
-    console.log("CardBody props:", this.props);
+    /*console.log("CardBody props:", this.props);
     console.log("CardBody state:", this.state);
-
+*/
     return (
       <div>
         {isEdit ? (
@@ -43,7 +35,7 @@ class CardBody extends React.Component {
           </>
         ) : (
           <>
-            <div className="text">{children}</div>
+            <div className="text">{this.props.children}</div>
           </>
         )}
       </div>

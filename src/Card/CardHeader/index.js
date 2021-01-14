@@ -10,24 +10,38 @@ import { GiCancel } from "react-icons/gi";
 class CardHeader extends React.Component {
   constructor(props) {
     super(props);
+
     //this.changeMethod = this.changeMethod.bind(this);
-    //this.toogleEditMethod = this.toogleEditMethod.bind(this);
+    this.toogleEditMethod = this.toogleEditMethod.bind(this);
   }
 
   state = {
-    initHeader: this.props.headerText,
+    isEdit: false,
   };
+
+  headerChange = (e) =>
+    this.setState({
+      initHeader: e.target.value,
+    });
+
+  toogleEditMethod() {
+    this.setState({
+      isEdit: !this.state.isEdit,
+    });
+  }
 
   render() {
     const {
-      isEdit,
+      number,
       checked,
       readOnly,
       headerText,
       onCheckedChange,
+      onEditChange,
+      onSetHeader,
     } = this.props;
 
-    const { initHeader } = this.state;
+    const { initHeader, isEdit } = this.state;
 
     console.log("CardHeader props:", this.props);
     console.log("CardHeader state:", this.state);
@@ -36,10 +50,10 @@ class CardHeader extends React.Component {
       <div>
         {isEdit ? (
           <>
-            <span className="absolute pen" onClick={this.toogleEditMethod}>
+            <span className="absolute pen" onClick={this.toogleEditMethod()}>
               {!readOnly && (
                 <>
-                  {/*<FaSave onClick={() => onSetHeader(number, initHeader)} /> */}
+                  <FaSave onClick={onSetHeader} />
                   <GiCancel
                     onClick={() =>
                       this.setState({

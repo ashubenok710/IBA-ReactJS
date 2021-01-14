@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Card.css";
 import classNames from "classnames/bind";
-import StatelessCheckbox from "../StatelessCheckbox/index.js";
 
 import CardHeader from "./CardHeader";
 import CardBody from "./CardBody";
@@ -55,6 +54,7 @@ class Card extends React.Component {
 
     console.log("Card props:", this.props);
     console.log("Card state:", this.state);
+    console.log("Card this.props.children: ", this.props.children);
 
     return (
       <div
@@ -63,12 +63,14 @@ class Card extends React.Component {
         })}
       >
         <CardHeader
-          checked={checked}
           readOnly={readOnly}
+          checked={checked}
           headerText={headerText}
           onCheckedChange={() =>
             onSetCard(number, headerText, children, !checked)
           }
+          onSetHeader={() => alert("Test")}
+          onEditChange={() => alert("Test2")}
         />
         <CardBody children={initText} />
       </div>
